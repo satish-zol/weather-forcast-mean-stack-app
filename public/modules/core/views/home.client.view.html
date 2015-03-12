@@ -13,7 +13,26 @@
         </form>
     </div>
     <div class="col-lg-12 text-center" data-ng-show="weather">
-        <span>{{weather.city.name}}, {{weather.city.country}}</span>
-        <span></span>
+        <span style="font-weight:bold;">{{weather.city.name}}, {{weather.city.country}} Weather forecast for the 14 days</span>
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <th>Date</th>
+                    <th>Temperature</th>
+                    <th>Max./Min Temp</th>
+                    <th>Description</th>
+                    <th>Humidity</th>
+                    <th>Wind speed</th>
+                </tr>
+                <tr data-ng-repeat="list in weather.list">
+                    <td>{{list.dt*1000 | date:'mediumDate' }}</td>
+                    <td>{{list.temp.day | kelvinToCelsius | number:1 }} &degC</td>
+                    <td>{{list.temp.max | kelvinToCelsius | number:1 }} / {{list.temp.min | kelvinToCelsius | number:1 }}</td>
+                    <td>{{list.weather[0].description | uppercase  }}</td>
+                    <td>{{list.humidity}}</td>
+                    <td>{{list.speed}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </section>
