@@ -7,7 +7,8 @@
 var request = require('request');
 var openWeatherMapApi = {app_id: '8aa0ef8cd732f666844de7830ae2b810',
                          api_url: 'http://api.openweathermap.org/data/2.5/forecast/daily',
-                        cnt: 14
+                         cnt: 14,
+                         type: 'accurate'
 };
 
 exports.index = function(req, res) {
@@ -22,7 +23,7 @@ exports.getCurrentCityWeather = function(req, res){
     var lat = req.body.lat;
     var lon = req.body.lon;
 
-    var url = openWeatherMapApi.api_url+'?lat='+lat+'&lon='+lon+'&cnt='+openWeatherMapApi.cnt+'&APPID='+ openWeatherMapApi.app_id;
+    var url = openWeatherMapApi.api_url+'?lat='+lat+'&lon='+lon+'&cnt='+openWeatherMapApi.cnt+'&type='+openWeatherMapApi.type+'&APPID='+ openWeatherMapApi.app_id;
     console.log(url);
     request.get(url, function(err, response){
         if(err){
